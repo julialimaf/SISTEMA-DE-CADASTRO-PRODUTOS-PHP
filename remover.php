@@ -13,7 +13,7 @@ if ($conn->connect_error) {
     die("Erro de conexão: " . $conn->connect_error);
 }
 
-$tabelas = ["modelo1", "modelo2", "modelo3"];
+$tabelas = ["modelo1", "modelo2", "modelo3", "modelo4"];
 
 
 $tabela = isset($_GET['tabela']) ? html_entity_decode($_GET['tabela']) : '';

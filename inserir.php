@@ -10,7 +10,7 @@ if ($conn->connect_error) {
     die("Erro de conexão: " . $conn->connect_error);
 }
 
-$tabelas = ["modelo1", "modelo2", "modelo3"];
+$tabelas = ["modelo1", "modelo2", "modelo3", "modelo4"];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $tabela = $_POST['tabela'];
@@ -41,7 +41,7 @@ $conn->close();
 </head>
 <body>
 <div class="container mt-5">
-    <h1>Inserir Novo Modelo</h1>
+    <h1>Inserir Informações na tabela</h1>
     <form method="POST" action="">
         <label for="tabela" class="form-label">Selecione a Tabela</label>
         <select class="form-control" id="tabela" name="tabela" required>

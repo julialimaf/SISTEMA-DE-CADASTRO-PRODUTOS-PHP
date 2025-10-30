@@ -9,7 +9,7 @@ if ($conn->connect_error) {
     die("Erro de conexão: " . $conn->connect_error);
 }
 
-$tabelas = ["modelo1", "modelo2", "modelo3"];
+$tabelas = ["modelo1", "modelo2", "modelo3", "modelo4"];
 $tabela = isset($_GET['tabela']) ? $_GET['tabela'] : '';
 $id_modelo = isset($_GET['id_modelo']) ? intval($_GET['id_modelo']) : 0;
 
@@ -51,6 +51,7 @@ $conn->close();
 <body>
 <div class="container mt-5">
     <h1>Editar Modelo</h1>
+    <h4>Aqui voce esta editanto as informações do modelo que escolheu dentro do banco de dados :D<h4>
     <form method="POST" action="">
         <label class="form-label">Cor</label>
         <input type="text" class="form-control" name="cor_modelo" value="<?php echo htmlspecialchars($modelo['cor_modelo']); ?>" required>

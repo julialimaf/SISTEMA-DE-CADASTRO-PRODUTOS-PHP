@@ -11,7 +11,7 @@ if ($conn->connect_error) {
 }
 
 
-$tabelas = ["modelo1", "modelo2", "modelo3"];
+$tabelas = ["modelo1", "modelo2", "modelo3", "modelo4"];
 
 
 $tabela_selecionada = isset($_GET['tabela']) ? $_GET['tabela'] : '';
