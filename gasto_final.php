@@ -31,7 +31,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->close();
 }
 
-// Buscar dados para exibir
 $dados_gastos = null;
 if ($mostrar_tabela) {
     $sql = "SELECT * FROM gastos_mensais ORDER BY id_gastos DESC";
@@ -143,6 +142,19 @@ $conn->close();
       background-color: #1e40af;
     }
 
+    .btn-danger {
+      background: #E691FE;
+      color: black;
+      padding: 8px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .btn-danger:hover {
+      background: #EBA4FF;
+    }
+
     .rodape {
       text-align: center;
       color: #475569;
@@ -206,6 +218,7 @@ $conn->close();
           <th>Mão de Obra</th>
           <th>Material</th>
           <th>Total</th>
+          <th>Ações</th>
         </tr>
         <?php while ($row = $dados_gastos->fetch_assoc()): ?>
           <tr>
@@ -215,6 +228,9 @@ $conn->close();
             <td>R$ <?php echo number_format($row['gasto_mao_de_obra_corte'], 2, ',', '.'); ?></td>
             <td>R$ <?php echo number_format($row['gasto_material'], 2, ',', '.'); ?></td>
             <td>R$ <?php echo number_format($row['gasto_total'], 2, ',', '.'); ?></td>
+            <td>
+              <a href="remover_gastos.php?id_gastos=<?php echo $row['id_gastos']; ?>" class="btn-danger" onclick="return confirm('Tem certeza que deseja remover este gasto?');">Remover</a>
+            </td>
           </tr>
         <?php endwhile; ?>
       </table>
