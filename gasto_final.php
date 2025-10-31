@@ -12,6 +12,22 @@ if ($conn->connect_error) {
 $mensagem = "";
 $mostrar_tabela = isset($_GET['ver']) ? true : false;
 
+// Processar remoção
+if (isset($_GET['remover']) && isset($_GET['id_gastos'])) {
+    $id_gastos = intval($_GET['id_gastos']);
+    if ($id_gastos > 0) {
+        $sql = "DELETE FROM gastos_mensais WHERE id_gastos = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $id_gastos);
+        if ($stmt->execute()) {
+            $mensagem = "✅ Gasto removido com sucesso!";
+        } else {
+            $mensagem = "❌ Erro ao remover: " . $stmt->error;
+        }
+        $stmt->close();
+    }
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mes_gasto = isset($_POST['mes_gasto']) ? $_POST['mes_gasto'] : '';
     $gasto_confeccao = floatval($_POST['gasto_confeccao']);
@@ -229,7 +245,7 @@ $conn->close();
             <td>R$ <?php echo number_format($row['gasto_material'], 2, ',', '.'); ?></td>
             <td>R$ <?php echo number_format($row['gasto_total'], 2, ',', '.'); ?></td>
             <td>
-              <a href="remover_gastos.php?id_gastos=<?php echo $row['id_gastos']; ?>" class="btn-danger" onclick="return confirm('Tem certeza que deseja remover este gasto?');">Remover</a>
+              <a href="?remover=1&id_gastos=<?php echo $row['id_gastos']; ?>" class="btn-danger" onclick="return confirm('Tem certeza que deseja remover este gasto?');">Remover</a>
             </td>
           </tr>
         <?php endwhile; ?>
